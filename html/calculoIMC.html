@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<h2>Cálculo de IMC</h2>
+		
+		<link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+	</head>
+	<body>
+		<div>
+			<label class="lbl">Peso:</label>
+			<input id="peso" type="number" />
+
+			<label class="lbl">Altura: </label>
+			<input id="altura" type="number" />
+		
+			<button id="btnCalculo" class="btnCalculo">Calcular IMC</button>
+		</div>
+
+		<div>
+			<input id="resultado" class="iptResultado" readonly />
+		</div>
+
+	</body>
+</html>
+
+<script type="text/javascript">
+
+	const btnCalculo  = document.getElementById('btnCalculo');
+	const inputPeso   = document.getElementById('peso');
+	const inputAltura = document.getElementById('altura');
+	const lblResultado = document.getElementById('resultado');
+	
+	btnCalculo.addEventListener('click', function() {
+		console.log('Peso:   ' + inputPeso.value);
+		console.log('Altura: ' + inputAltura.value);
+	  
+		if(inputPeso.value <= 0 || inputAltura.value <= 0){
+			alert('Os dois valores precisam ser maiores que zero.');
+		}
+		else{
+			var imc = inputPeso.value / (inputAltura.value * inputAltura.value);
+			lblResultado.value = '';
+			
+			if(imc > 0)
+			{					
+				if(imc < 18.5){
+					lblResultado.value = 'IMC: ' + imc.toFixed(2) + ' - Magreza';
+					console.log('IMC: ' + imc.toFixed(2) + ' - Magreza');
+				}
+				else if(imc > 18.5 || imc <= 24.9){
+					lblResultado.value = 'IMC: ' + imc.toFixed(2) + ' - Normal';
+					console.log('IMC: ' + imc.toFixed(2) + ' - Normal');
+				}
+				else if(imc > 24.9 || imc <= 30){
+					lblResultado.value = 'IMC: ' + imc.toFixed(2) + ' - Sobrepeso';
+					console.log('IMC: ' + imc.toFixed(2) + ' - Sobrepeso');
+				}
+				else if(imc > 30){
+					lblResultado.value = 'IMC: ' + imc.toFixed(2) + ' - Obesidade';
+					console.log('IMC: ' + imc.toFixed(2) + ' - Obesidade');
+				}
+			}
+		}
+	});
+	
+</script>
